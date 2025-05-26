@@ -152,7 +152,7 @@ for i, country in enumerate(selected_countries):
 # -----------------------------------------------------------------------------
 # Sezione: LC1 e LC2 dal file H01L1C2.tsv
 
-st.header('LC1 and LC2 from H01L1C2.tsv', divider='gray')
+st.header('LC1 and LC2', divider='gray')
 
 # Caricamento del file TSV
 lc_data_path = Path(__file__).parent / 'data/H01L1C2.tsv'
