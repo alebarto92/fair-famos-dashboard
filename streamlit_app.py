@@ -149,3 +149,33 @@ for i, country in enumerate(selected_countries):
             delta=growth,
             delta_color=delta_color
         )
+# -----------------------------------------------------------------------------
+# Sezione: LC1 e LC2 dal file H01L1C2.tsv
+
+st.header('LC1 and LC2 from H01L1C2.tsv', divider='gray')
+
+# Caricamento del file TSV
+lc_data_path = Path(__file__).parent / 'data' / 'H01L1C2.tsv'
+
+
+# Nomi delle colonne attese
+col_names = ['Time', 'Paddle Displacement', 'LC1', 'LC2', 'WG0', 'WG1', 'WG2', 'WG3']
+
+# Leggi il file TSV con separatore di tabulazione, ignora la riga di intestazione commentata
+lc_df = pd.read_csv(
+    lc_data_path,
+    sep='\t',
+    comment='%',          # Ignora righe che iniziano con '%'
+    names=col_names,      # Imposta i nomi delle colonne
+    skiprows=1,           # Salta la riga con i nomi originali (che era commentata)
+    engine='python',      # Parser flessibile
+)
+
+# Conversione della colonna Time in datetime
+lc_df['Time'] = pd.to_datetime(lc_df['Time'], format='%d/%m/%Y %H.%M.%S.%f')
+
+# Imposta Time come indice temporale per la visualizzazione
+lc_df.set_index('Time', inplace=True)
+
+# Mostra il grafico con LC1 e LC2 nel tempo
+st.line_chart(lc_df[['LC1', 'LC2']])
