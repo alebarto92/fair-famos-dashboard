@@ -155,7 +155,7 @@ for i, country in enumerate(selected_countries):
 st.header('LC1 and LC2 from H01L1C2.tsv', divider='gray')
 
 # Caricamento del file TSV
-lc_data_path = Path(__file__).parent / 'data' / 'H01L1C2.tsv'
+lc_data_path = Path(__file__).parent / 'data/H01L1C2.tsv'
 
 
 # Nomi delle colonne attese
